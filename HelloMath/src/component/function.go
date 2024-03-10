@@ -55,6 +55,35 @@ func printMapping(mapping []map[Element]Element) {
 	}
 }
 
+func injective(f func(int) int, domain []int) bool {
+	theMap := make(map[int]bool)
+	for _, value := range domain {
+		result := f(value)
+		if theMap[result] {
+			return false
+		}
+		theMap[result] = true
+	}
+	return true
+}
+
+func surjective(f func(int) int, domain []int, codomain []int) bool {
+	theMap := make(map[int]bool)
+	for _, value := range codomain {
+		theMap[value] = false
+	}
+	for _, value := range domain {
+		result := f(value)
+		theMap[result] = true
+	}
+	for _, value := range theMap {
+		if !value {
+			return false
+		}
+	}
+	return true
+}
+
 func (p *function) Render() app.UI {
 	return app.Div().Class("container").Body(
 		app.H1().Class("text-center").Text("function"),
