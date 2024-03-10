@@ -11,9 +11,9 @@ type Hello struct {
 func (h *Hello) Render() app.UI {
 	return app.Main().Body(
 		&Header{},
-		&h.Sidebar,
-		//&Sidebar{},
+		//&h.Sidebar,
+		&Sidebar{},
 		//&Calculator{},
-		&Week{Name: h.Sidebar.SelectedItem},
+		//&Week{Name: h.Sidebar.SelectedItem},
 	)
 }
