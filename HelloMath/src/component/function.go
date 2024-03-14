@@ -17,10 +17,12 @@ type Element string
 
 type function struct {
 	app.Compo
-	a      string
-	b      string
-	c      string
-	result string
+	a        string
+	b        string
+	c        string
+	result   string
+	theInput string
+	list     []string
 }
 
 // A := []Element{"a", "b"}
@@ -43,9 +45,9 @@ func setMapping(A, B []Element, theMapping []map[Element]Element, index int, cur
 		delete(currentMapping, A[index])
 	}
 	return theMapping
-
 }
-func printMapping(mapping []map[Element]Element) {
+
+func (p *function) printMapping(mapping []map[Element]Element) {
 	for i, theMapping := range mapping {
 		print("f", i+1, ":")
 		for a, b := range theMapping {
@@ -53,6 +55,14 @@ func printMapping(mapping []map[Element]Element) {
 		}
 		fmt.Println()
 	}
+}
+
+func (p *function) handleMapping(ctx app.Context, e app.Event) {
+	A := []Element{"a", "b"}
+	B := []Element{"1", "2", "3"}
+	theMapping := setMapping(A, B, []map[Element]Element{}, 0, make(map[Element]Element))
+	p.printMapping(theMapping)
+	p.Update()
 }
 
 func injective(f func(int) int, domain []int) bool {
@@ -84,29 +94,54 @@ func surjective(f func(int) int, domain []int, codomain []int) bool {
 	return true
 }
 
+// y=kx+b
+func inverseLinear(k, b, y int) int {
+	return (y - b) / k
+}
+
+//
+
+func preimage() {
+
+}
+
+func composition() {
+
+}
+
 func (p *function) Render() app.UI {
-	return app.Div().Class("container").Body(
-		app.H1().Class("text-center").Text("function"),
-		app.Div().Class("card").Body(
-			app.Div().Class("card-body").Body(
-				app.H5().Class("card-title").Text("1."),
-				app.P().Class("card-text").Text(""),
-				app.A().Class("btn btn-primary").Text("Solution"),
-			),
+	return app.Div().Class("container-fluid").Body(
+		app.Div().Class("row").Body(
+			app.P().Text("Given two sets A={1,2} B={x,y}, list all possible functions from set A to set B."),
 		),
-		app.Div().Class("card").Body(
-			app.Div().Class("card-body").Body(
-				app.H5().Class("card-title").Text("Injective"),
-				app.P().Class("card-text").Text("is injective or not"),
-				app.A().Class("btn btn-primary").Text("Solution"),
-			),
+		app.Button().
+			Text("solution").
+			OnClick(p.handleMapping),
+		app.H5().Text(p.handleMapping),
+
+		app.Div().Class("row").Body(
+			app.P().Text("Given two sets A={1,2} B={x,y}, list all possible functions from set A to set B."),
 		),
-		app.Div().Class("card").Body(
-			app.Div().Class("card-body").Body(
-				app.H5().Class("card-title").Text("Surjective"),
-				app.P().Class("card-text").Text(""),
-				app.A().Class("btn btn-primary").Text("Solution"),
-			),
-		),
+		app.Input().
+			Type("p").
+			Value(p.theInput).
+			OnChange(p.ValueTo(p.theInput)),
+
+		app.A().Class("btn btn-outline-primary btn-sm").Text("Solution"),
+
+		//app.Div().Class("card").Body(
+		//	app.Div().Class("card-body").Body(
+		//		app.H5().Class("card-title").Text("Injective"),
+		//		app.P().Class("card-text").Text("is injective or not"),
+		//		app.A().Class("btn btn-primary").Text("Solution"),
+		//	),
+		//),
+		//app.Div().Class("card").Body(
+		//	app.Div().Class("card-body").Body(
+		//		app.H5().Class("card-title").Text("Surjective"),
+		//		app.P().Class("card-text").Text(""),
+		//		app.A().Class("btn btn-primary").Text("Solution"),
+		//	),
+		//),
 	)
 }
