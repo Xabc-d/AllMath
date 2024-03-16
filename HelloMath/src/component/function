@@ -21,8 +21,47 @@ prove
 if bijective then inverse function
 find
 
-4.preimage
-if a function is give preimage and image
+4. image and preimage
+Consider the function 𝑓:{0, 1, … ,9} → {0, 1, … ,10} f(x) = 3x+1
+random f....
+What is the image of 𝑓?
+What is the preimage of the letter ‘s’ under 7?
+if bijective then inverse function
+
+
+
 
 5.composition
 give some composition
+
+
+
+
+
+
+
+composition of relations
+
+inverse of relation
+
+partial order
+
+total order
+
+equivalence relations
+
+关系的逆（Inverse of a Relation）
+A={1,2} B={X,Y}
+R={(1,X),(2,Y)}
+R-1={X,1),(Y,2)}
+
+
+
+still more（）
+
+关系的复合（Composition of Relations）
+A={1,2} B={X,Y} c={α,β}
+R={(1,x),(2,y)}
+S={(x,α),(y,β)}
+R∘S={(1,α),(2,β)}
+偏序（Partial Order）
