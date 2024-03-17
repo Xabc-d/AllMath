@@ -21,8 +21,10 @@ func (s *Sidebar) onClick(ctx app.Context, e app.Event) {
 func (s *Sidebar) Render() app.UI {
 	return app.Div().Class("container-fluid").Body(
 		app.Div().Class("row ").Body(
+
 			app.Div().Class("text-bg-light sidebar").Style("height", "100vh").Style("border-right", "1px solid rgba(0, 0, 0, .1)").Body(
 				app.Ul().Class("nav flex-column").Body(
+
 					app.Li().Class("nav-item").Style("width", "50%").Style("margin", "0 auto").Body(
 						app.A().OnClick(s.onClick).Class("nav-link active").Href("/week01").Body(
 							app.Text("week01"),

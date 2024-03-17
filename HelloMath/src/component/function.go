@@ -20,7 +20,9 @@ type function struct {
 	a        string
 	b        string
 	c        string
-	result   string
+	Answer1  string
+	Answer2  string
+	Answer3  string
 	theInput string
 	list     []string
 }
@@ -112,22 +114,79 @@ func composition() {
 func (p *function) Render() app.UI {
 	return app.Div().Class("container-fluid").Body(
 		app.Div().Class("row").Body(
-			app.P().Text("Given two sets A={1,2} B={x,y}, list all possible functions from set A to set B."),
+			app.Div().Class("col-12").Body(
+				app.H5().Class("mb-3").Text("Question"),
+				app.P().Text("What is the?"),
+				app.Input().
+					Type("text").
+					Style("width", "200px").
+					Style("height", "30px").
+					Class("form-control mb-3").
+					Placeholder("Enter your answer").
+					Value(p.Answer1).
+					AutoFocus(true).
+					OnChange(p.InputChangeQ1),
+				app.Button().
+					Class("btn btn-outline-primary btn-sm").
+					Text("Submit Answer").
+					OnClick(p.SubmitQ1),
+			),
 		),
-		app.Button().
-			Text("solution").
-			OnClick(p.handleMapping),
-		app.H5().Text(p.handleMapping),
+		app.Div().Class("row").Body(
+			app.Div().Class("col-12").Body(
+				app.Button().Class("btn btn-link").Text("Show Answer").OnClick(p.SolutionQ1),
+			),
+		),
 
 		app.Div().Class("row").Body(
-			app.P().Text("Given two sets A={1,2} B={x,y}, list all possible functions from set A to set B."),
+			app.Div().Class("col-12").Body(
+				app.H5().Class("mb-3").Text("Question"),
+				app.P().Text("What is the?"),
+				app.Input().
+					Type("text").
+					Style("width", "200px").
+					Style("height", "30px").
+					Class("form-control mb-3").
+					Placeholder("Enter your answer").
+					Value(p.Answer2).
+					AutoFocus(true).
+					OnChange(p.InputChangeQ2),
+				app.Button().
+					Class("btn btn-outline-primary btn-sm").
+					Text("Submit Answer").
+					OnClick(p.SubmitQ2),
+			),
 		),
-		app.Input().
-			Type("p").
-			Value(p.theInput).
-			OnChange(p.ValueTo(p.theInput)),
+		app.Div().Class("row").Body(
+			app.Div().Class("col-12").Body(
+				app.Button().Class("btn btn-link").Text("Show Answer").OnClick(p.SolutionQ2),
+			),
+		),
 
-		app.A().Class("btn btn-outline-primary btn-sm").Text("Solution"),
+		app.Div().Class("row").Body(
+			app.Div().Class("col-12").Body(
+				app.H5().Class("mb-3").Text("Question"),
+				app.P().Text("What is the?"),
+				app.Input().
+					Type("text").
+					Style("width", "200px").
+					Style("height", "30px").
+					Class("form-control mb-3").
+					Placeholder("Enter your answer").
+					Value(p.Answer3).
+					AutoFocus(true).
+					OnChange(p.InputChangeQ3),
+				app.Button().
+					Class("btn btn-outline-primary btn-sm").
+					Text("Submit Answer").
+					OnClick(p.SubmitQ3),
+			),
+		),
+		app.Div().Class("row").Body(
+			app.Div().Class("col-12").Body(
+				app.Button().Class("btn btn-link").Text("Show Answer").OnClick(p.SolutionQ3),
+			),
+		),
 
 		//app.Div().Class("card").Body(
 		//	app.Div().Class("card-body").Body(
@@ -144,4 +203,28 @@ func (p *function) Render() app.UI {
 		//	),
 		//),
 	)
+}
+
+func (p *function) InputChangeQ1(ctx app.Context, e app.Event) {
+	p.Answer1 = ctx.JSSrc().Get("value").String()
+}
+func (p *function) SubmitQ1(ctx app.Context, e app.Event) {
+}
+func (p *function) SolutionQ1(ctx app.Context, e app.Event) {
+}
+
+func (p *function) InputChangeQ2(ctx app.Context, e app.Event) {
+	p.Answer2 = ctx.JSSrc().Get("value").String()
+}
+func (p *function) SubmitQ2(ctx app.Context, e app.Event) {
+}
+func (p *function) SolutionQ2(ctx app.Context, e app.Event) {
+}
+
+func (p *function) InputChangeQ3(ctx app.Context, e app.Event) {
+	p.Answer3 = ctx.JSSrc().Get("value").String()
+}
+func (p *function) SubmitQ3(ctx app.Context, e app.Event) {
+}
+func (p *function) SolutionQ3(ctx app.Context, e app.Event) {
 }
