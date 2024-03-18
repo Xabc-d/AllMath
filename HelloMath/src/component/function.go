@@ -17,14 +17,15 @@ type Element string
 
 type function struct {
 	app.Compo
-	a        string
-	b        string
-	c        string
-	Answer1  string
-	Answer2  string
-	Answer3  string
-	theInput string
-	list     []string
+	a          string
+	b          string
+	c          string
+	Answer1    string
+	Answer2    string
+	Answer3    string
+	theInput   string
+	list       []string
+	solutionQ1 bool
 }
 
 // A := []Element{"a", "b"}
@@ -115,8 +116,20 @@ func (p *function) Render() app.UI {
 	return app.Div().Class("container-fluid").Body(
 		app.Div().Class("row").Body(
 			app.Div().Class("col-12").Body(
-				app.H5().Class("mb-3").Text("Question"),
-				app.P().Text("What is the?"),
+				app.Div().Class("row").Body(
+					app.H5().Class("col-auto").Text("Question"),
+					app.Button().
+						Class("col-auto btn btn-outline-primary").
+						Style("width", "60px").
+						Style("height", "20px").
+						Style("padding", "0").
+						Style("display", "flex").
+						Style("justify-content", "center").
+						Style("margin-top", "3px").
+						Style("font-size", "0.7rem").
+						Text("variation"),
+				),
+				app.P().Text("Given two sets A={1,2} B={x,y}, list all possible functions from set A to set B"),
 				app.Input().
 					Type("text").
 					Style("width", "200px").
@@ -133,15 +146,16 @@ func (p *function) Render() app.UI {
 			),
 		),
 		app.Div().Class("row").Body(
-			app.Div().Class("col-12").Body(
+			app.Div().Class("col-12").Style("padding", "0").Style("margin", "0").Body(
 				app.Button().Class("btn btn-link").Text("Show Answer").OnClick(p.SolutionQ1),
 			),
+			p.renderSolutionQ1(),
 		),
 
 		app.Div().Class("row").Body(
 			app.Div().Class("col-12").Body(
 				app.H5().Class("mb-3").Text("Question"),
-				app.P().Text("What is the?"),
+				app.P().Text("Consider the function 𝑓:{0, 1, … ,9} → {} f(x) = 3x+1"),
 				app.Input().
 					Type("text").
 					Style("width", "200px").
@@ -158,7 +172,7 @@ func (p *function) Render() app.UI {
 			),
 		),
 		app.Div().Class("row").Body(
-			app.Div().Class("col-12").Body(
+			app.Div().Class().Style("padding", "0").Style("margin", "0").Body(
 				app.Button().Class("btn btn-link").Text("Show Answer").OnClick(p.SolutionQ2),
 			),
 		),
@@ -182,7 +196,7 @@ func (p *function) Render() app.UI {
 					OnClick(p.SubmitQ3),
 			),
 		),
-		app.Div().Class("row").Body(
+		app.Div().Class("row").Style("padding", "0").Style("margin", "0").Body(
 			app.Div().Class("col-12").Body(
 				app.Button().Class("btn btn-link").Text("Show Answer").OnClick(p.SolutionQ3),
 			),
@@ -211,11 +225,21 @@ func (p *function) InputChangeQ1(ctx app.Context, e app.Event) {
 func (p *function) SubmitQ1(ctx app.Context, e app.Event) {
 }
 func (p *function) SolutionQ1(ctx app.Context, e app.Event) {
+	p.solutionQ1 = !p.solutionQ1
+	p.Update()
+}
+
+func (p *function) renderSolutionQ1() app.UI {
+	if p.solutionQ1 {
+		return app.Div().Text("Solution")
+	}
+	return nil
 }
 
 func (p *function) InputChangeQ2(ctx app.Context, e app.Event) {
 	p.Answer2 = ctx.JSSrc().Get("value").String()
 }
+
 func (p *function) SubmitQ2(ctx app.Context, e app.Event) {
 }
 func (p *function) SolutionQ2(ctx app.Context, e app.Event) {
