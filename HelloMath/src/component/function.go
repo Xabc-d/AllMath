@@ -117,7 +117,7 @@ func (p *function) Render() app.UI {
 		app.Div().Class("row").Body(
 			app.Div().Class("col-12").Body(
 				app.Div().Class("row").Body(
-					app.H5().Class("col-auto").Text("Question"),
+					app.H5().Class("col-auto").Text("Definition"),
 					app.Button().
 						Class("col-auto btn btn-outline-primary").
 						Style("width", "60px").
@@ -155,7 +155,87 @@ func (p *function) Render() app.UI {
 		app.Div().Class("row").Body(
 			app.Div().Class("col-12").Body(
 				app.H5().Class("mb-3").Text("Question"),
-				app.P().Text("Consider the function 𝑓:{0, 1, … ,9} → {} f(x) = 3x+1"),
+				app.P().Text("Consider the function 𝑓:{0, 1, … ,9} → {} f(x) = 3x+1, calculate the preimage and image"),
+				app.Input().
+					Type("text").
+					Style("width", "200px").
+					Style("height", "30px").
+					Class("form-control mb-3").
+					Placeholder("Enter your answer").
+					Value(p.Answer2).
+					AutoFocus(true).
+					OnChange(p.InputChangeQ2),
+				app.Input().
+					Type("text").
+					Style("width", "200px").
+					Style("height", "30px").
+					Class("form-control mb-3").
+					Placeholder("Enter your answer").
+					Value(p.Answer2).
+					AutoFocus(true).
+					OnChange(p.InputChangeQ2),
+				app.Button().
+					Class("btn btn-outline-primary btn-sm").
+					Text("Submit Answer").
+					OnClick(p.SubmitQ2),
+			),
+		),
+		app.Div().Class("row").Body(
+			app.Div().Class().Style("padding", "0").Style("margin", "0").Body(
+				app.Button().Class("btn btn-link").Text("Show Answer").OnClick(p.SolutionQ2),
+			),
+		),
+		//
+		//
+		//
+
+		app.Div().Class("row").Body(
+			app.Div().Class("col-12").Body(
+				app.Div().Class("row").Body(
+					app.H5().Class("col-auto").Text("Question"),
+					app.Button().
+						Class("col-auto btn btn-outline-primary").
+						Style("width", "60px").
+						Style("height", "20px").
+						Style("padding", "0").
+						Style("display", "flex").
+						Style("justify-content", "center").
+						Style("margin-top", "3px").
+						Style("font-size", "0.7rem").
+						Text("variation"),
+				),
+				app.P().Text("For the following function, determine whether they are injective, surjective, or both(bijective)"),
+				app.Div().Class("form-check").Body(
+					app.Input().Type("radio").Class("form-check-input").ID("option1").Name("question").Value("A"),
+					app.Label().Class("form-check-label").For("option1").Text("injective only"),
+				),
+				app.Div().Class("form-check").Body(
+					app.Input().Type("radio").Class("form-check-input").ID("option2").Name("question").Value("B"),
+					app.Label().Class("form-check-label").For("option2").Text("surjective only"),
+				),
+				app.Div().Class("form-check").Body(
+					app.Input().Type("radio").Class("form-check-input").ID("option3").Name("question").Value("C"),
+					app.Label().Class("form-check-label").For("option3").Text("bijective (both)"),
+				),
+				//app.Input().
+				//	Type("text").
+				//	Style("width", "200px").
+				//	Style("height", "30px").
+				//	Class("form-control mb-3").
+				//	Placeholder("Enter your answer").
+				//	AutoFocus(true),
+			),
+		),
+		app.Div().Class("row").Body(
+			app.Div().Class("col-12").Style("padding", "0").Style("margin", "0").Body(
+				app.Button().Class("btn btn-link").Text("Show Answer"),
+			),
+		),
+
+		app.Div().Class("row").Body(
+			app.Div().Class("col-12").Body(
+				app.H5().Class("mb-3").Text("Question"),
+				app.P().Text("Given th bijective function f: A→B f(x), determine its inverse function f^-1"),
 				app.Input().
 					Type("text").
 					Style("width", "200px").
@@ -177,30 +257,30 @@ func (p *function) Render() app.UI {
 			),
 		),
 
-		app.Div().Class("row").Body(
-			app.Div().Class("col-12").Body(
-				app.H5().Class("mb-3").Text("Question"),
-				app.P().Text("What is the?"),
-				app.Input().
-					Type("text").
-					Style("width", "200px").
-					Style("height", "30px").
-					Class("form-control mb-3").
-					Placeholder("Enter your answer").
-					Value(p.Answer3).
-					AutoFocus(true).
-					OnChange(p.InputChangeQ3),
-				app.Button().
-					Class("btn btn-outline-primary btn-sm").
-					Text("Submit Answer").
-					OnClick(p.SubmitQ3),
-			),
-		),
-		app.Div().Class("row").Style("padding", "0").Style("margin", "0").Body(
-			app.Div().Class("col-12").Body(
-				app.Button().Class("btn btn-link").Text("Show Answer").OnClick(p.SolutionQ3),
-			),
-		),
+		//app.Div().Class("row").Body(
+		//	app.Div().Class("col-12").Body(
+		//		app.H5().Class("mb-3").Text("Question"),
+		//		app.P().Text("What is the?"),
+		//		app.Input().
+		//			Type("text").
+		//			Style("width", "200px").
+		//			Style("height", "30px").
+		//			Class("form-control mb-3").
+		//			Placeholder("Enter your answer").
+		//			Value(p.Answer3).
+		//			AutoFocus(true).
+		//			OnChange(p.InputChangeQ3),
+		//		app.Button().
+		//			Class("btn btn-outline-primary btn-sm").
+		//			Text("Submit Answer").
+		//			OnClick(p.SubmitQ3),
+		//	),
+		//),
+		//app.Div().Class("row").Style("padding", "0").Style("margin", "0").Body(
+		//	app.Div().Class("col-12").Body(
+		//		app.Button().Class("btn btn-link").Text("Show Answer").OnClick(p.SolutionQ3),
+		//	),
+		//),
 
 		//app.Div().Class("card").Body(
 		//	app.Div().Class("card-body").Body(

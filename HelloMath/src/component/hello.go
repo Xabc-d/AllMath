@@ -15,7 +15,9 @@ func (h *Hello) Render() app.UI {
 			app.Div().Class("col-2").Body(
 				&Sidebar{}),
 			app.Div().Class("col-10").Body(
-				&function{}),
+				//&relation{}),
+				//&function{}),
+				&predicates{}),
 		),
 		//&Header{},
 		//&h.Sidebar,
